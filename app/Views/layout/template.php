@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <style>
         body {
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #7ae1c6;
+            color: #306059;
         }
         .navbar {
-            background-color: #1f1f1f !important;
+            background-color: #13a4ba !important;
         }
         .card {
-            background-color: #1e1e1e;
-            border-color: #333;
+            background-color: #8ddcb7;
+            border-color: #4e836a;
         }
         .table {
             color: #e0e0e0;
@@ -34,14 +34,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('prestamos') ?>">Préstamos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('libros') ?>">Libros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('estudiantes') ?>">Estudiantes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('autores') ?>">Autores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('editoriales') ?>">Editoriales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('clientes') ?>">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('empleados') ?>">Empleados</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('estados') ?>">Estados</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('grados') ?>">Grados</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('productos') ?>">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('categorias') ?>">Categorías</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('carritos') ?>">Carritos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('detalle_carritos') ?>">Detalles del Carrito</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('pedidos') ?>">Pedido</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('detalle_pedidos') ?>">Detalles del Pedido</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('envios') ?>">Envíos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('lista_deseos') ?>">Lista de Deseos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('resenias') ?>">Reseñas</a></li>
                 </ul>
             </div>
         </div>
