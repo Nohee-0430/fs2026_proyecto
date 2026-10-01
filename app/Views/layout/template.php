@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'Biblioteca CI4') ?></title>
+    <title><?= esc($title ?? 'Sweet Candy') ?></title>
     <!-- Bootstrap CSS Local -->
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <style>
@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="<?= base_url() ?>">
-                📚 Mi Biblioteca
+                Sweet Candy
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
