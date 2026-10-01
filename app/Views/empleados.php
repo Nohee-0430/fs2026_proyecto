@@ -18,24 +18,24 @@
             <div class="modal-body">
                 <form action="<?=base_url('empleados/insertar'); ?>" class="form" method="post">
                     <div class="mb-3">
-                        <label for="txt_codigo" class="form-label">Código</label>
-                        <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="txt_nombre" class="form-label">Nombre</label>
                         <input type="text" name="txt_nombre" id="txt_nombre" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="txt_apellido" class="form-label">Apellido</label>
-                        <input type="text" name="txt_apellido" id="txt_apellido" class="form-control" required>
+                        <label for="txt_correo" class="form-label">Correo</label>
+                        <input type="email" name="txt_correo" id="txt_correo" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="txt_direccion" class="form-label">Dirección</label>
-                        <input type="text" name="txt_direccion" id="txt_direccion" class="form-control">
+                        <label for="txt_contrasenia" class="form-label">Contraseña</label>
+                        <input type="password" name="txt_contrasenia" id="txt_contrasenia" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="txt_email" class="form-label">Email</label>
-                        <input type="email" name="txt_email" id="txt_email" class="form-control">
+                        <label for="txt_rol" class="form-label">Rol</label>
+                        <input type="text" name="txt_rol" id="txt_rol" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_fecha_registro" class="form-label">Fecha de Registro</label>
+                        <input type="date" name="txt_fecha_registro" id="txt_fecha_registro" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Guardar cambios</button>
                 </form>
@@ -50,23 +50,25 @@
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
-                        <th>Código</th>
-                        <th>Nombre Completo</th>
-                        <th>Dirección</th>
-                        <th>Email</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Fecha de Registro</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($datos as $empleado): ?>
                     <tr>
-                        <td><?=$empleado['codigo_empleado']?></td>
-                        <td><?=$empleado['nombre']." ".$empleado['apellido'];?></td>
-                        <td><?=$empleado['direccion']?></td>
-                        <td><?=$empleado['email']?></td>
+                        <td><?=$empleado['empleado_id']?></td>
+                        <td><?=$empleado['nombre']?></td>
+                        <td><?=$empleado['correo']?></td>
+                        <td><?=$empleado['rol']?></td>
+                        <td><?=$empleado['fecha_registro']?></td>
                         <td>
-                            <a href="<?=base_url('empleados/buscar/').$empleado['codigo_empleado'];?>" class="btn btn-sm btn-info">Actualizar</a>
-                            <a href="<?=base_url('empleados/eliminar/').$empleado['codigo_empleado'];?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar empleado?');">Eliminar</a>
+                            <a href="<?=base_url('empleados/buscar/').$empleado['empleado_id'];?>" class="btn btn-sm btn-info">Actualizar</a>
+                            <a href="<?=base_url('empleados/eliminar/').$empleado['empleado_id'];?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar empleado?');">Eliminar</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

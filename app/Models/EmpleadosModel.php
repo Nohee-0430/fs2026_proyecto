@@ -5,6 +5,6 @@ use CodeIgniter\Model;
 class EmpleadosModel extends Model 
 {
     protected $table = 'empleados';
-    protected $primaryKey = 'codigo_empleado';
-    protected $allowedFields = ['codigo_empleado', 'nombre', 'apellido', 'direccion', 'email'];
+    protected $primaryKey = 'empleado_id';
+    protected $allowedFields = ['empleado_id', 'nombre', 'correo', 'contrasenia', 'rol', 'fecha_registro'];
 }

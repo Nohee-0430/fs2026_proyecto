@@ -14,26 +14,27 @@ class EmpleadosController extends BaseController
         return view("empleados", $datos);
     }
 
-    public function buscarId($codigo)
+    public function buscarId($id)
     {
         $empleado = new EmpleadosModel();
-        $datos["datos"] = $empleado->where('codigo_empleado', $codigo)->first();
+        $datos["datos"] = $empleado->where('empleado_id', $id)->first();
         return view("empleados_editar", $datos);
     }
 
     public function actualizar()
     {
-        $codigo = $this->request->getVar('txt_codigo');
+        $id = $this->request->getVar('txt_empleado_id');
         
         $datos = [
-            'nombre'    => $this->request->getVar('txt_nombre'),
-            'apellido'  => $this->request->getVar('txt_apellido'),
-            'direccion' => $this->request->getVar('txt_direccion'),
-            'email'     => $this->request->getVar('txt_email')
+            'nombre'         => $this->request->getVar('txt_nombre'),
+            'correo'         => $this->request->getVar('txt_correo'),
+            'contrasenia'    => $this->request->getVar('txt_contrasenia'),
+            'rol'            => $this->request->getVar('txt_rol'),
+            'fecha_registro' => $this->request->getVar('txt_fecha_registro')
         ];
 
         $empleado = new EmpleadosModel();
-        $empleado->update($codigo, $datos);
+        $empleado->update($id, $datos);
         
         return redirect()->to(base_url('empleados'));
     }
@@ -41,11 +42,11 @@ class EmpleadosController extends BaseController
     public function insertar()
     {
         $datos = [
-            'codigo_empleado' => $this->request->getVar('txt_codigo'),
-            'nombre'          => $this->request->getVar('txt_nombre'),
-            'apellido'        => $this->request->getVar('txt_apellido'),
-            'direccion'       => $this->request->getVar('txt_direccion'),
-            'email'           => $this->request->getVar('txt_email')
+            'nombre'         => $this->request->getVar('txt_nombre'),
+            'correo'         => $this->request->getVar('txt_correo'),
+            'contrasenia'    => $this->request->getVar('txt_contrasenia'),
+            'rol'            => $this->request->getVar('txt_rol'),
+            'fecha_registro' => $this->request->getVar('txt_fecha_registro')
         ];
 
         $empleado = new EmpleadosModel();
@@ -54,10 +55,10 @@ class EmpleadosController extends BaseController
         return redirect()->to(base_url('empleados'));
     }
 
-    public function eliminar($codigo)
+    public function eliminar($id)
     {
         $empleado = new EmpleadosModel();
-        $empleado->delete($codigo);
+        $empleado->delete($id);
 
         return redirect()->to(base_url('empleados'));
     }
