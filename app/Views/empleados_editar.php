@@ -20,7 +20,7 @@
                 <input type="email" name="txt_correo" id="txt_correo" class="form-control" value="<?=$datos['correo'];?>" required>
             </div>
             <div class="mb-3">
-                <label for="txt_contrasenia" class="form-label">Contraseña (Dejar en blanco si no cambia)</label>
+                <label for="txt_contrasenia" class="form-label">Contraseña</label>
                 <input type="password" name="txt_contrasenia" id="txt_contrasenia" class="form-control" value="<?=$datos['contrasenia'];?>" required>
             </div>
             <div class="mb-3">

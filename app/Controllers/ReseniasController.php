@@ -21,7 +21,7 @@ class ReseniasController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_resenia_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'cliente_id' => $this->request->getVar('txt_cliente_id'),
             'detalle_pedido_id' => $this->request->getVar('txt_detalle_pedido_id'),

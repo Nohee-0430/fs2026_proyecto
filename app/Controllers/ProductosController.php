@@ -21,7 +21,7 @@ class ProductosController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_productos_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'categoria_id' => $this->request->getVar('txt_categoria_id'),
             'nombre' => $this->request->getVar('txt_nombre'),

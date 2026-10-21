@@ -21,7 +21,7 @@ class EnviosController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_pedido_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'direccion' => $this->request->getVar('txt_direccion'),
             'municipio' => $this->request->getVar('txt_municipio'),

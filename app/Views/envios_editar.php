@@ -7,8 +7,8 @@
     <div class="card-body">
         <form action="<?=base_url('envios/actualizar'); ?>" class="form" method="post">
             <div class="mb-3">
-                <label for="txt_pedido_id" class="form-label">Pedido id</label>
-                <input type="text" name="txt_pedido_id" id="txt_pedido_id" class="form-control" value="<?=$datos['pedido_id'];?>" readonly>
+                <label for="txt_codigo" class="form-label">Código</label>
+                <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" value="<?=$datos['pedido_id'];?>" readonly>
             </div>
             <div class="mb-3">
                 <label for="txt_direccion" class="form-label">Direccion</label>

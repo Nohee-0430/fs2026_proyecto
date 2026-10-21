@@ -98,7 +98,7 @@ foreach ($tables as $table => $data) {
     }
     $insert_str = implode(",\n", $insert_array);
     
-    $controller_content = "<?php\nnamespace App\\Controllers;\nuse App\\Controllers\\BaseController;\nuse App\\Models\\{$model_name};\n\nclass {$controller_name} extends BaseController\n{\n    public function index()\n    {\n        \$modelo = new {$model_name}();\n        \$datos[\"datos\"] = \$modelo->findAll();\n        return view(\"{$table}\", \$datos);\n    }\n\n    public function buscarId(\$id)\n    {\n        \$modelo = new {$model_name}();\n        \$datos[\"datos\"] = \$modelo->where('{$pk}', \$id)->first();\n        return view(\"{$table}_editar\", \$datos);\n    }\n\n    public function actualizar()\n    {\n        \$id = \$this->request->getVar('txt_{$pk}');\n        \$datos = [\n{$insert_str}\n        ];\n        \$modelo = new {$model_name}();\n        \$modelo->update(\$id, \$datos);\n        return redirect()->to(base_url('{$route_group}'));\n    }\n\n    public function insertar()\n    {\n        \$datos = [\n{$insert_str}\n        ];\n        \$modelo = new {$model_name}();\n        \$modelo->insert(\$datos);\n        return redirect()->to(base_url('{$route_group}'));\n    }\n\n    public function eliminar(\$id)\n    {\n        \$modelo = new {$model_name}();\n        \$modelo->delete(\$id);\n        return redirect()->to(base_url('{$route_group}'));\n    }\n}\n";
+    $controller_content = "<?php\nnamespace App\\Controllers;\nuse App\\Controllers\\BaseController;\nuse App\\Models\\{$model_name};\n\nclass {$controller_name} extends BaseController\n{\n    public function index()\n    {\n        \$modelo = new {$model_name}();\n        \$datos[\"datos\"] = \$modelo->findAll();\n        return view(\"{$table}\", \$datos);\n    }\n\n    public function buscarId(\$id)\n    {\n        \$modelo = new {$model_name}();\n        \$datos[\"datos\"] = \$modelo->where('{$pk}', \$id)->first();\n        return view(\"{$table}_editar\", \$datos);\n    }\n\n    public function actualizar()\n    {\n        \$id = \$this->request->getVar('txt_codigo');\n        \$datos = [\n{$insert_str}\n        ];\n        \$modelo = new {$model_name}();\n        \$modelo->update(\$id, \$datos);\n        return redirect()->to(base_url('{$route_group}'));\n    }\n\n    public function insertar()\n    {\n        \$datos = [\n{$insert_str}\n        ];\n        \$modelo = new {$model_name}();\n        \$modelo->insert(\$datos);\n        return redirect()->to(base_url('{$route_group}'));\n    }\n\n    public function eliminar(\$id)\n    {\n        \$modelo = new {$model_name}();\n        \$modelo->delete(\$id);\n        return redirect()->to(base_url('{$route_group}'));\n    }\n}\n";
     
     file_put_contents($base_path . "\\Controllers\\" . $controller_name . ".php", $controller_content);
 
@@ -113,7 +113,7 @@ foreach ($tables as $table => $data) {
         $table_cells .= "                        <td><?=\$fila['{$field}']?></td>\n";
         
         if ($field == $pk) {
-            $edit_inputs .= "            <div class=\"mb-3\">\n                <label for=\"txt_{$field}\" class=\"form-label\">" . ucfirst(str_replace('_', ' ', $field)) . "</label>\n                <input type=\"text\" name=\"txt_{$field}\" id=\"txt_{$field}\" class=\"form-control\" value=\"<?=\$datos['{$field}'];?>\" readonly>\n            </div>\n";
+            $edit_inputs .= "            <div class=\"mb-3\">\n                <label for=\"txt_codigo\" class=\"form-label\">Código</label>\n                <input type=\"text\" name=\"txt_codigo\" id=\"txt_codigo\" class=\"form-control\" value=\"<?=\$datos['{$field}'];?>\" readonly>\n            </div>\n";
         } else {
             $form_inputs .= "                    <div class=\"mb-3\">\n                        <label for=\"txt_{$field}\" class=\"form-label\">" . ucfirst(str_replace('_', ' ', $field)) . "</label>\n                        <input type=\"text\" name=\"txt_{$field}\" id=\"txt_{$field}\" class=\"form-control\" required>\n                    </div>\n";
             $edit_inputs .= "            <div class=\"mb-3\">\n                <label for=\"txt_{$field}\" class=\"form-label\">" . ucfirst(str_replace('_', ' ', $field)) . "</label>\n                <input type=\"text\" name=\"txt_{$field}\" id=\"txt_{$field}\" class=\"form-control\" value=\"<?=\$datos['{$field}'];?>\" required>\n            </div>\n";
@@ -131,6 +131,6 @@ foreach ($tables as $table => $data) {
     $routes_append .= "\$routes->group('{$route_group}', function(\$routes) {\n    \$routes->get('/', '{$controller_name}::index');\n    \$routes->get('eliminar/(:any)', '{$controller_name}::eliminar/$1');\n    \$routes->get('buscar/(:any)', '{$controller_name}::buscarId/$1');\n    \$routes->post('actualizar', '{$controller_name}::actualizar');\n    \$routes->post('insertar', '{$controller_name}::insertar');\n});\n";
 }
 
-file_put_contents($base_path . "\\Config\\Routes.php", $routes_append, FILE_APPEND);
+// file_put_contents($base_path . "\\Config\\Routes.php", $routes_append, FILE_APPEND);
 
 echo "All controllers, models, views, and routes generated successfully.\n";

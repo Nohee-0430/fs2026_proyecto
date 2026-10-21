@@ -21,7 +21,7 @@ class DetallePedidosController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_detalle_pedido_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'carrito_id' => $this->request->getVar('txt_carrito_id'),
             'producto_id' => $this->request->getVar('txt_producto_id'),

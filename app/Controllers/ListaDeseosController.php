@@ -21,7 +21,7 @@ class ListaDeseosController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_lista_deseo_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'cliente_id' => $this->request->getVar('txt_cliente_id'),
             'producto_id' => $this->request->getVar('txt_producto_id'),

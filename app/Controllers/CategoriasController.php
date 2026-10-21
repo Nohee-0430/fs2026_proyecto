@@ -21,7 +21,7 @@ class CategoriasController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_categoria_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'nombre' => $this->request->getVar('txt_nombre'),
             'descripcion' => $this->request->getVar('txt_descripcion')

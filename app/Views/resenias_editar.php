@@ -7,8 +7,8 @@
     <div class="card-body">
         <form action="<?=base_url('resenias/actualizar'); ?>" class="form" method="post">
             <div class="mb-3">
-                <label for="txt_resenia_id" class="form-label">Resenia id</label>
-                <input type="text" name="txt_resenia_id" id="txt_resenia_id" class="form-control" value="<?=$datos['resenia_id'];?>" readonly>
+                <label for="txt_codigo" class="form-label">Código</label>
+                <input type="text" name="txt_codigo" id="txt_codigo" class="form-control" value="<?=$datos['resenia_id'];?>" readonly>
             </div>
             <div class="mb-3">
                 <label for="txt_cliente_id" class="form-label">Cliente id</label>

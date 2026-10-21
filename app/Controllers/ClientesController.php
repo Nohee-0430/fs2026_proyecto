@@ -21,7 +21,7 @@ class ClientesController extends BaseController
 
     public function actualizar()
     {
-        $id = $this->request->getVar('txt_cliente_id');
+        $id = $this->request->getVar('txt_codigo');
         $datos = [
             'nombre' => $this->request->getVar('txt_nombre'),
             'correo' => $this->request->getVar('txt_correo'),
