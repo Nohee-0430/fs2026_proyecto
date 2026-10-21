@@ -8,7 +8,7 @@
     <div class="card-body">
         <form action="<?=base_url('empleados/actualizar'); ?>" class="form" method="post">
             <div class="mb-3">
-                <label for="txt_empleado_id" class="form-label">ID Empleado</label>
+                <label for="txt_empleado_id" class="form-label">Código de Empleado:</label>
                 <input type="text" name="txt_empleado_id" id="txt_empleado_id" class="form-control" value="<?=$datos['empleado_id'];?>" readonly>
             </div>
             <div class="mb-3">
