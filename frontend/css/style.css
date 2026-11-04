@@ -1412,3 +1412,122 @@ a:hover {
         transform: translateY(0);
     }
 }
+
+/* ==========================================================================
+   GESTIÓN DE PEDIDOS MÚLTIPLES (SELECTOR Y SIDEBAR)
+   ========================================================================== */
+.order-tab-btn {
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-inner);
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-wine-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+}
+
+.order-tab-btn:hover {
+    border-color: var(--color-pink-primary);
+    background-color: var(--color-pink-subtle);
+}
+
+.order-tab-btn.active {
+    background-color: var(--color-wine-primary);
+    color: #ffffff;
+    border-color: var(--color-wine-primary);
+    box-shadow: 0 4px 14px rgba(155, 40, 84, 0.25);
+}
+
+.order-tab-btn.active .badge {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+}
+
+.sidebar-order-item {
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-inner);
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-order-item:hover {
+    border-color: var(--color-pink-primary);
+    background-color: var(--color-pink-subtle);
+}
+
+.sidebar-order-item.active {
+    border-color: var(--color-wine-primary);
+    background-color: var(--color-pink-subtle);
+    box-shadow: 0 2px 10px rgba(155, 40, 84, 0.12);
+}
+
+/* ==========================================================================
+   SELECTOR DE TIPO DE ENTREGA Y TARIFAS (ZONAS Y SEGURIDAD)
+   ========================================================================== */
+.delivery-option-card {
+    display: block;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-inner);
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delivery-option-card:hover {
+    border-color: var(--color-pink-primary);
+    background-color: var(--color-pink-subtle);
+}
+
+.delivery-option-card.selected {
+    border-color: var(--color-wine-primary);
+    background-color: var(--color-pink-subtle);
+    box-shadow: 0 2px 8px rgba(155, 40, 84, 0.08);
+}
+
+/* Tarjeta de Cuenta Guardada en Login */
+.saved-account-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-inner);
+    background-color: #ffffff;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+}
+
+.saved-account-card:hover {
+    background-color: var(--color-pink-subtle);
+    border-color: var(--color-pink-primary);
+}
+
+/* Tarjetas de Sub-Modalidad Departamental (Forza Prepago vs COD) */
+.dept-sub-card {
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid var(--color-border) !important;
+}
+
+.dept-sub-card:hover {
+    border-color: var(--color-pink-primary) !important;
+    background-color: var(--color-pink-subtle) !important;
+}
+
+.dept-sub-card.selected {
+    border-color: var(--color-wine-primary) !important;
+    background-color: #fff9fa !important;
+    box-shadow: 0 1px 5px rgba(155, 40, 84, 0.08);
+}
+
+
+
