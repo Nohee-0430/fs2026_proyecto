@@ -185,10 +185,9 @@
                             <!-- Banner Servicio de Impresión -->
                             <div class="print-service-banner">
                                 <h5><i class="bi bi-magic text-wine"></i> ¡Servicio de Impresión!</h5>
-                                <p>Envíanos tu foto o diseño y te la entregamos lista en papel de azúcar para pastel.</p>
-                                <button class="btn-upload-photo" data-bs-toggle="modal" data-bs-target="#uploadPhotoModal">
-                                    <i class="bi bi-cloud-arrow-up-fill"></i> Subir Imagen Foto
-                                </button>
+                                <p>Envíanos tu foto o diseño a nuestro WhatsApp o correo electrónico.</p>
+                                <p>WhatsApp: +502 2602-1234</p>
+                                <p>Correo: dulceimpresión.gt@gmail.com</p>
                             </div>
 
                         </div>
@@ -509,7 +508,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <input type="text" id="checkoutCustomAddressInput" class="form-control form-control-sm rounded-pill" 
-                                           placeholder="Aclaración de dirección, no. de casa o indicaciones..." oninput="handleAddressNotesChange(this.value)">
+                                            placeholder="Aclaración de dirección, no. de casa o indicaciones..." oninput="handleAddressNotesChange(this.value)">
                                 </div>
                             </div>
 
