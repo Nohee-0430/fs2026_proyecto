@@ -45,8 +45,7 @@ $listaProductos = Productos::obtenerProductos($conexionMongo);
                 </li>
             </ul>
 
-            <!-- Banner Informativo de Servicio de Impresión -->
-            <div class="print-service-banner mt-4">
+            <!-- Banner Informativo de Servicio de Impresión -->            <div class="print-service-banner mt-4">
                 <h5><i class="bi bi-magic text-wine"></i> ¡Servicio de Impresión!</h5>
                 <p class="small mb-2">Envíanos tu foto o diseño para personalizar tu pastel o cupcakes.</p>
                 <p class="small mb-1"><i class="bi bi-whatsapp text-success me-1"></i> +502 2602-1234</p>
@@ -56,7 +55,6 @@ $listaProductos = Productos::obtenerProductos($conexionMongo);
         </div>
     </aside>
 
-    <!-- Columna Derecha: Catálogo y Grid de Productos -->
     <div class="col-lg-9 col-xl-10">
         <div class="content-card">
             
@@ -87,7 +85,6 @@ $listaProductos = Productos::obtenerProductos($conexionMongo);
                 </div>
             </div>
 
-            <!-- Grid de Productos (Recorrido tradicional con foreach de PHP) -->
             <div id="catalogGrid" class="catalog-products-grid">
                 <?php foreach ($listaProductos as $p): 
                     $esDeseado = Deseos::contiene((int)$p['id']);
@@ -120,7 +117,6 @@ $listaProductos = Productos::obtenerProductos($conexionMongo);
                             <p class="product-desc"><?= escapar($p['descripcion']) ?></p>
                             <div class="product-price">Q <?= number_format((float)$p['precio'], 2) ?></div>
                             
-                            <!-- Formulario tradicional para agregar al carrito -->
                             <form action="objetos/agregarCarrito.php" method="post" class="mt-2">
                                 <input type="hidden" name="producto_id" value="<?= $p['id'] ?>">
                                 <input type="hidden" name="cantidad" value="1">

@@ -20,7 +20,6 @@ require_once "header.php";
                 </div>
             <?php endif; ?>
 
-            <!-- Formulario con los mismos campos de la clase -->
             <form action="objetos/agregarUsuario.php" method="post">
                 <div class="mb-3">
                     <label for="txtNombre" class="form-label small fw-semibold text-muted">Nombre Completo</label>
@@ -29,8 +28,8 @@ require_once "header.php";
                             <i class="bi bi-card-text"></i>
                         </span>
                         <input type="text" name="txtNombre" id="txtNombre" 
-                               class="form-control rounded-end-pill border-start-0 ps-0" 
-                               placeholder="Ej: Nohelia Barillas" required autofocus>
+                                class="form-control rounded-end-pill border-start-0 ps-0" 
+                                placeholder="Ej: Nohelia Barillas" required autofocus>
                     </div>
                 </div>
 

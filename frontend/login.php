@@ -26,7 +26,6 @@ require_once "header.php";
                 </div>
             <?php endif; ?>
 
-            <!-- Formulario basado en la lógica de clase (txtUsuario y txtPassword) -->
             <form action="objetos/iniciarSesion.php" method="post">
                 <div class="mb-3">
                     <label for="txtUsuario" class="form-label small fw-semibold text-muted">Usuario o Correo</label>
