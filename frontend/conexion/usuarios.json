@@ -1,0 +1,20 @@
+{
+    "nohelia": {
+        "usuario": "nohelia",
+        "nombre": "Nohelia Barillas",
+        "password": "$2y$10$iSkVheVKL4hVNj5Lm7t4wee0MfrItdqF.VPAfyA9oOVPyEC9samzu",
+        "tipo_usuario_id": 1
+    },
+    "admin": {
+        "usuario": "admin",
+        "nombre": "Administrador Dulce Impresión",
+        "password": "$2y$10$mINc7iAJ.IwS4bs0HpVykuZFOI7xwuV3jevLh1rb1yHE01dEqGrsu",
+        "tipo_usuario_id": 2
+    },
+    "carlos": {
+        "usuario": "carlos",
+        "nombre": "Carlos Perez",
+        "password": "$2y$10$T2rMMey48ZrQtnbB.L\/2eOhVwlJjY8psBFKQTTVzAyaXDxrw1RVh2",
+        "tipo_usuario_id": 1
+    }
+}
