@@ -251,10 +251,7 @@ $paginaActual = $paginaActual ?? 'catalogo';
             </div>
 
             <?php if ($mysqlConectado): ?>
-                <div class="alert alert-success py-1 px-3 mt-2 mb-0 d-flex align-items-center justify-content-between small shadow-sm rounded-pill">
                     <span>
-                        <i class="bi bi-database-check me-1 text-success"></i> 
-                        <strong>MySQL Conectado:</strong> Base de datos <code><?= escapar($mysqlDb) ?></code>
                         <?php if ($mongoConectado): ?>
                             <span class="ms-2">| <i class="bi bi-check-circle-fill text-success"></i> <strong>MongoDB:</strong> Activo</span>
                         <?php endif; ?>
@@ -263,12 +260,9 @@ $paginaActual = $paginaActual ?? 'catalogo';
                         <a href="../backend/public/productos" class="badge bg-primary text-decoration-none rounded-pill px-3">
                             <i class="bi bi-terminal me-1"></i> Backend CI4 Activo
                         </a>
-                    <?php else: ?>
-                        <span class="badge bg-wine text-white rounded-pill px-3">
-                            <i class="bi bi-person me-1"></i> <?= $estaAutenticado ? 'Cliente' : 'Invitado' ?>
-                        </span>
+                    
                     <?php endif; ?>
-                </div>
+                
             <?php endif; ?>
 
         </div>

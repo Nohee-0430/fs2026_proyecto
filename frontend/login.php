@@ -41,7 +41,7 @@ require_once "header.php";
                         </span>
                         <input type="text" name="txtUsuario" id="txtUsuario" 
                                class="form-control rounded-end-pill border-start-0 ps-0" 
-                               placeholder="Ej: admin o nohelia" required autofocus>
+                               required autofocus>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@ require_once "header.php";
                         </span>
                         <input type="password" name="txtPassword" id="txtPassword" 
                                class="form-control rounded-end-pill border-start-0 ps-0" 
-                               placeholder="Tu contraseña (ej: 123)" required>
+                               required>
                     </div>
                 </div>
 
@@ -62,29 +62,7 @@ require_once "header.php";
                 </button>
             </form>
 
-            <div class="p-3 bg-light rounded-4 border mb-4">
-                <h6 class="fw-bold text-wine small mb-2"><i class="bi bi-info-circle me-1"></i> Cuentas preconfiguradas del sistema:</h6>
-                
-                <div class="d-flex align-items-center justify-content-between p-2 mb-2 bg-white rounded-3 border small">
-                    <div>
-                        <span class="badge bg-primary me-1">Empleado / Admin</span>
-                        <strong class="text-dark">admin</strong> / <code>123</code>
-                    </div>
-                    <button type="button" class="btn btn-outline-primary btn-sm py-0 px-2" onclick="llenarLogin('admin', '123')">
-                        Usar
-                    </button>
-                </div>
-
-                <div class="d-flex align-items-center justify-content-between p-2 bg-white rounded-3 border small">
-                    <div>
-                        <span class="badge bg-wine text-white me-1">Cliente</span>
-                        <strong class="text-dark">nohelia</strong> / <code>123</code>
-                    </div>
-                    <button type="button" class="btn btn-outline-secondary btn-sm py-0 px-2" onclick="llenarLogin('nohelia', '123')">
-                        Usar
-                    </button>
-                </div>
-            </div>
+            
 
             <div class="text-center pt-3 border-top">
                 <p class="text-muted small mb-2">¿Aún no tienes una cuenta registrada?</p>
