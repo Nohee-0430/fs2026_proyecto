@@ -1,17 +1,17 @@
 <?php
 $paginaActual = 'registro';
-$tituloPagina = 'Crear Nuevo Usuario';
+$tituloPagina = 'Crear Nueva Cuenta';
 require_once "header.php";
 ?>
 
 <div class="row justify-content-center my-4">
-    <div class="col-md-6 col-lg-5">
+    <div class="col-md-7 col-lg-6">
         <div class="content-card p-4 p-md-5 shadow-sm">
             
             <div class="text-center mb-4">
                 <img src="imagenes/logo_proyecto.png" alt="Dulce Impresión" style="height: 60px;" class="mb-2">
-                <h3 class="card-title-lg text-wine">Crear Nuevo Usuario</h3>
-                <p class="text-muted small">Registra tus datos con la lógica de autenticación del curso</p>
+                <h3 class="card-title-lg text-wine">Crear Nueva Cuenta</h3>
+                <p class="text-muted small">Registra una nueva cuenta para cliente o empleado</p>
             </div>
 
             <?php if (isset($_GET['error'])): ?>
@@ -28,20 +28,20 @@ require_once "header.php";
                             <i class="bi bi-card-text"></i>
                         </span>
                         <input type="text" name="txtNombre" id="txtNombre" 
-                                class="form-control rounded-end-pill border-start-0 ps-0" 
-                                placeholder="Ej: Nohelia Barillas" required autofocus>
+                               class="form-control rounded-end-pill border-start-0 ps-0" 
+                               placeholder="Ej: Daniel Morales" required autofocus>
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="txtUsuario" class="form-label small fw-semibold text-muted">Usuario</label>
+                    <label for="txtUsuario" class="form-label small fw-semibold text-muted">Usuario o Correo Electrónico</label>
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0 rounded-start-pill text-muted">
                             <i class="bi bi-person"></i>
                         </span>
                         <input type="text" name="txtUsuario" id="txtUsuario" 
                                class="form-control rounded-end-pill border-start-0 ps-0" 
-                               placeholder="Ej: noheliab o tu alias" required>
+                               placeholder="Ej: daniel o daniel@correo.com" required>
                     </div>
                 </div>
 
@@ -56,20 +56,23 @@ require_once "header.php";
                                placeholder="Contraseña segura" required>
                     </div>
                     <span class="form-text text-muted small" style="font-size: 11px;">
-                        <i class="bi bi-shield-lock me-1"></i> Se guardará encriptada con <code>password_hash()</code>.
+                        <i class="bi bi-shield-lock me-1"></i> La contraseña se almacenará encriptada con <code>password_hash()</code>.
                     </span>
                 </div>
 
                 <div class="mb-4">
-                    <label for="txtTipoUsuario" class="form-label small fw-semibold text-muted">Tipo de Usuario</label>
+                    <label for="txtTipoUsuario" class="form-label small fw-semibold text-muted">Tipo de Cuenta / Rol</label>
                     <select name="txtTipoUsuario" id="txtTipoUsuario" class="form-select rounded-pill">
-                        <option value="1" selected>Cliente (Acceso a Catálogo y Compras)</option>
-                        <option value="2">Empleado (Acceso a Pedidos y Gestión)</option>
+                        <option value="1" selected>🛍️ Cliente (Acceso a Tienda, Catálogo, Carrito y Compras)</option>
+                        <option value="2">👔 Empleado / Admin (Acceso a Modificar Datos, Crear Productos y Pedidos)</option>
                     </select>
+                    <span class="form-text text-muted small" style="font-size: 11px;">
+                        Selecciona <strong>Empleado</strong> si deseas acceder al panel donde puedes modificar datos y crear nuevos productos.
+                    </span>
                 </div>
 
                 <button type="submit" class="btn btn-pill-primary w-100 py-2 fs-6 shadow-sm mb-3">
-                    <i class="bi bi-person-check me-1"></i> Guardar y Crear Usuario
+                    <i class="bi bi-person-check me-1"></i> Registrar Cuenta
                 </button>
             </form>
 

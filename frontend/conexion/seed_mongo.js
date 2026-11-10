@@ -1,9 +1,3 @@
-/**
- * Script opcional para sembrar MongoDB con mongosh o Node.js
- * Uso en terminal:
- *   mongosh "mongodb://localhost:27017/fs2026_proyecto" seed_mongo.js
- */
-
 const productos = [
     {
         id: 1,
@@ -106,5 +100,5 @@ const productos = [
 if (typeof db !== 'undefined') {
     db.productos.deleteMany({});
     db.productos.insertMany(productos);
-    print("¡Productos insertados con éxito en la colección 'productos' de MongoDB!");
+    print("Se insertaron " + productos.length + " productos en MongoDB.");
 }

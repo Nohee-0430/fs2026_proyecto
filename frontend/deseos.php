@@ -5,11 +5,14 @@ require_once "header.php";
 require_once "clases/Productos.php";
 
 $idsDeseos = Deseos::obtenerIds();
-$todosProductos = Productos::obtenerProductos($conexionMongo);
+$todosProductos = Productos::obtenerProductos($conexionMySQL, $conexionMongo);
 
-$productosDeseados = array_filter($todosProductos, function($p) use ($idsDeseos) {
-    return in_array((int)$p['id'], $idsDeseos);
-});
+$productosDeseados = [];
+foreach ($todosProductos as $p) {
+    if (in_array((int)$p['id'], $idsDeseos)) {
+        $productosDeseados[] = $p;
+    }
+}
 ?>
 
 <div class="row g-4">
@@ -59,16 +62,15 @@ $productosDeseados = array_filter($todosProductos, function($p) use ($idsDeseos)
                             </div>
 
                             <div class="product-info-body">
-                                <h5 class="product-name" title="<?= escapar($p['nombre']) ?>"><?= escapar($p['nombre']) ?></h5>
+                                <h5 class="product-name"><?= escapar($p['nombre']) ?></h5>
                                 <p class="product-desc"><?= escapar($p['descripcion']) ?></p>
                                 <div class="product-price">Q <?= number_format((float)$p['precio'], 2) ?></div>
-                                
+
                                 <form action="objetos/agregarCarrito.php" method="post" class="mt-2">
                                     <input type="hidden" name="producto_id" value="<?= $p['id'] ?>">
                                     <input type="hidden" name="cantidad" value="1">
-                                    <input type="hidden" name="ir_a_carrito" value="1">
                                     <button type="submit" class="btn-add-cart w-100">
-                                        <i class="bi bi-cart-plus me-1"></i> Mover al Carrito
+                                        <i class="bi bi-cart-plus me-1"></i> Agregar al Carrito
                                     </button>
                                 </form>
                             </div>

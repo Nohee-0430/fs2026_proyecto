@@ -4,11 +4,50 @@ $tituloPagina = 'Catálogo de Insumos';
 require_once "header.php";
 require_once "clases/Productos.php";
 
-$listaProductos = Productos::obtenerProductos($conexionMongo);
+$listaProductos = Productos::obtenerProductos($conexionMySQL, $conexionMongo);
 ?>
 
+<?php if ($esEmpleado): ?>
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="alert alert-primary d-flex align-items-center justify-content-between flex-wrap gap-2 rounded-4 py-3 px-4 shadow-sm mb-0">
+                <div>
+                    <i class="bi bi-shield-check text-primary me-2 fs-4"></i>
+                    <strong>Modo Empleado / Administrador Activo:</strong> Estás visualizando la tienda en vista de cliente. Para crear productos con el formulario o modificar datos existentes, ve a tu backend en CodeIgniter 4.
+                </div>
+                <a href="../backend/public/productos" class="btn btn-primary btn-sm rounded-pill px-4 fw-semibold text-nowrap">
+                    <i class="bi bi-terminal me-1"></i> Ir al Backend CI4 (CRUD)
+                </a>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_GET['bienvenido'])): ?>
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="alert alert-success alert-dismissible fade show rounded-pill px-4 shadow-sm mb-0" role="alert">
+                <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+                ¡Bienvenido(a), <strong><?= escapar($nombreUsuario) ?></strong>! Has iniciado sesión como cliente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_GET['error']) && $_GET['error'] === 'acceso_denegado'): ?>
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="alert alert-warning alert-dismissible fade show rounded-pill px-4 shadow-sm mb-0" role="alert">
+                <i class="bi bi-shield-exclamation me-2 fs-5"></i>
+                Acceso restringido: Esa sección requiere una cuenta con rol de Empleado o Administrador.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <div class="row g-4">
-    <!-- Sidebar Izquierdo: Categorías y Filtros -->
     <aside class="col-lg-3 col-xl-2">
         <div class="sidebar-card">
             <h3 class="sidebar-heading">Categorías</h3>
@@ -45,7 +84,7 @@ $listaProductos = Productos::obtenerProductos($conexionMongo);
                 </li>
             </ul>
 
-            <!-- Banner Informativo de Servicio de Impresión -->            <div class="print-service-banner mt-4">
+            <div class="print-service-banner mt-4">
                 <h5><i class="bi bi-magic text-wine"></i> ¡Servicio de Impresión!</h5>
                 <p class="small mb-2">Envíanos tu foto o diseño para personalizar tu pastel o cupcakes.</p>
                 <p class="small mb-1"><i class="bi bi-whatsapp text-success me-1"></i> +502 2602-1234</p>

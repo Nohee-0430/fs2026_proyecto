@@ -8,9 +8,7 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5 Bundle JS -->
     <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- JavaScript simplificado de apoyo visual -->
     <script src="js/app.js"></script>
 </body>
 </html>

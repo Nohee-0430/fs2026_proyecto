@@ -10,7 +10,6 @@ $totalPagar = $subtotal + $costoEnvio;
 ?>
 
 <div class="row g-4">
-    <!-- Columna Izquierda: Tabla del Carrito -->
     <div class="col-lg-8">
         <div class="content-card">
             <h2 class="card-title-lg mb-1">Tu Carrito de Compras</h2>
@@ -48,24 +47,24 @@ $totalPagar = $subtotal + $costoEnvio;
                                                 <i class="bi <?= escapar($item['icono'] ?? 'bi-box-seam') ?> text-wine fs-4"></i>
                                             </div>
                                             <div>
-                                                <h6 class="mb-0 fw-bold"><?= escapar($item['nombre']) ?></h6>
-                                                <?php if (!empty($item['nota'])): ?>
-                                                    <span class="text-muted small d-block">Nota: <?= escapar($item['nota']) ?></span>
-                                                <?php endif; ?>
+                                                <strong class="d-block text-dark"><?= escapar($item['nombre']) ?></strong>
+                                                <small class="text-muted">Insumo Comestible</small>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="text-center fw-semibold">
-                                        <?= (int)$item['cantidad'] ?>
+                                    <td class="text-center">
+                                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
+                                            <?= (int)$item['cantidad'] ?>
+                                        </span>
                                     </td>
-                                    <td class="text-end">
+                                    <td class="text-end fw-semibold text-muted">
                                         Q <?= number_format((float)$item['precio'], 2) ?>
                                     </td>
                                     <td class="text-end fw-bold text-wine">
                                         Q <?= number_format((float)$item['subtotal'], 2) ?>
                                     </td>
                                     <td class="text-center">
-                                        <form action="objetos/eliminarCarrito.php" method="post" onsubmit="return confirm('¿Quitar este producto del carrito?');">
+                                        <form action="objetos/eliminarCarrito.php" method="post" class="d-inline">
                                             <input type="hidden" name="producto_id" value="<?= $item['id'] ?>">
                                             <button type="submit" class="btn btn-sm btn-outline-danger border-0" title="Eliminar">
                                                 <i class="bi bi-trash3"></i>
@@ -88,7 +87,6 @@ $totalPagar = $subtotal + $costoEnvio;
         </div>
     </div>
 
-    <!-- Columna Derecha: Resumen de Compra y Checkout -->
     <div class="col-lg-4">
         <div class="summary-card">
             <h3 class="summary-heading mb-3">Resumen de Compra</h3>
@@ -100,15 +98,14 @@ $totalPagar = $subtotal + $costoEnvio;
 
             <div class="summary-row d-flex justify-content-between py-2 border-bottom">
                 <span class="text-muted">Envío Estimado:</span>
-                <span class="fw-bold">Q <?= number_format($costoEnvio, 2) ?></span>
+                <span class="fw-bold text-wine" id="lblEnvio">Q <?= number_format($costoEnvio, 2) ?></span>
             </div>
 
             <div class="summary-row total-row d-flex justify-content-between py-3 mb-4">
                 <span class="fw-bold fs-5">Total a Pagar:</span>
-                <span class="total-amount fs-4 fw-bold text-wine">Q <?= number_format($totalPagar, 2) ?></span>
+                <span class="total-amount fs-4 fw-bold text-wine" id="lblTotal">Q <?= number_format($totalPagar, 2) ?></span>
             </div>
 
-            <!-- Formulario para Confirmar el Pedido (guardado en MongoDB) -->
             <?php if (!empty($itemsCarrito)): ?>
                 <form action="objetos/crearPedido.php" method="post" class="border-top pt-3">
                     <h5 class="fw-bold text-wine mb-3"><i class="bi bi-person-lines-fill me-1"></i> Datos para tu Pedido</h5>
@@ -125,16 +122,20 @@ $totalPagar = $subtotal + $costoEnvio;
 
                     <div class="mb-3">
                         <label class="form-label small fw-semibold text-muted">Tipo de Entrega</label>
-                        <select name="tipo_entrega" class="form-select form-select-sm rounded-pill">
-                            <option value="Entrega a Domicilio">Entrega Local en Ciudad (Q 25.00)</option>
-                            <option value="Envío Departamental">Envío Nacional por Cargo Expreso</option>
-                            <option value="Recoger en Tienda">Recoger en Tienda (Gratis)</option>
+                        <select name="tipo_entrega" id="selectTipoEntrega" class="form-select form-select-sm rounded-pill" onchange="cambiarTipoEntrega()">
+                            <option value="Entrega a Domicilio" selected>Entrega Local en Ciudad (Q 25.00)</option>
+                            <option value="Envío Departamental">Envío Nacional por Cargo Expreso (Q 25.00)</option>
+                            <option value="Recoger en Tienda">Recoger en Tienda (Gratis - Sin Dirección)</option>
                         </select>
                     </div>
 
-                    <div class="mb-3">
+                    <div id="infoRecogerTienda" class="alert alert-info py-2 px-3 small rounded-3 mb-3 d-none">
+                        <i class="bi bi-shop me-1 text-primary"></i> <strong>Recoger en Tienda:</strong> No requieres ingresar dirección. Podrás pasar a recoger tu pedido en nuestra sucursal una vez preparado.
+                    </div>
+
+                    <div class="mb-3" id="wrapperDireccion">
                         <label class="form-label small fw-semibold text-muted">Dirección de Entrega</label>
-                        <input type="text" name="direccion" class="form-control form-control-sm rounded-pill" placeholder="Zona, calle, número de casa..." required>
+                        <input type="text" name="direccion" id="inputDireccion" class="form-control form-control-sm rounded-pill" placeholder="Zona, calle, número de casa..." required>
                     </div>
 
                     <div class="mb-4">
@@ -158,5 +159,41 @@ $totalPagar = $subtotal + $costoEnvio;
         </div>
     </div>
 </div>
+
+<script>
+function cambiarTipoEntrega() {
+    var select = document.getElementById('selectTipoEntrega');
+    var wrapper = document.getElementById('wrapperDireccion');
+    var input = document.getElementById('inputDireccion');
+    var info = document.getElementById('infoRecogerTienda');
+    var lblEnvio = document.getElementById('lblEnvio');
+    var lblTotal = document.getElementById('lblTotal');
+    var subtotal = <?= (float)$subtotal ?>;
+
+    if (!select) return;
+
+    if (select.value === 'Recoger en Tienda') {
+        if (wrapper) wrapper.classList.add('d-none');
+        if (input) {
+            input.removeAttribute('required');
+            input.value = '';
+        }
+        if (info) info.classList.remove('d-none');
+
+        if (lblEnvio) lblEnvio.textContent = 'Gratis (Q 0.00)';
+        if (lblTotal) lblTotal.textContent = 'Q ' + subtotal.toFixed(2);
+    } else {
+        if (wrapper) wrapper.classList.remove('d-none');
+        if (input) input.setAttribute('required', 'required');
+        if (info) info.classList.add('d-none');
+
+        var envio = 25.00;
+        if (lblEnvio) lblEnvio.textContent = 'Q ' + envio.toFixed(2);
+        if (lblTotal) lblTotal.textContent = 'Q ' + (subtotal + envio).toFixed(2);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', cambiarTipoEntrega);
+</script>
 
 <?php require_once "footer.php"; ?>

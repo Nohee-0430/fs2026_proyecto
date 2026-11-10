@@ -1,11 +1,7 @@
 <?php
-/**
- * Clase Deseos
- * Maneja la lista de deseos en la sesión del usuario
- */
 class Deseos
 {
-    public static function iniciar(): void
+    public static function iniciar()
     {
         if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
             @session_start();
@@ -15,33 +11,34 @@ class Deseos
         }
     }
 
-    public static function toggle(int $id): bool
+    public static function toggle($id)
     {
         self::iniciar();
+        $id = (int)$id;
         $pos = array_search($id, $_SESSION['deseos']);
         if ($pos !== false) {
             unset($_SESSION['deseos'][$pos]);
             $_SESSION['deseos'] = array_values($_SESSION['deseos']);
-            return false; // Eliminado
+            return false;
         } else {
             $_SESSION['deseos'][] = $id;
-            return true; // Agregado
+            return true;
         }
     }
 
-    public static function contiene(int $id): bool
+    public static function contiene($id)
     {
         self::iniciar();
-        return in_array($id, $_SESSION['deseos'] ?? []);
+        return in_array((int)$id, $_SESSION['deseos'] ?? []);
     }
 
-    public static function contar(): int
+    public static function contar()
     {
         self::iniciar();
         return count($_SESSION['deseos'] ?? []);
     }
 
-    public static function obtenerIds(): array
+    public static function obtenerIds()
     {
         self::iniciar();
         return $_SESSION['deseos'] ?? [];

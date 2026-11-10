@@ -1,8 +1,4 @@
 <?php
-/**
- * Script para sembrar (insertar) los productos iniciales en MongoDB
- * Ejecutar desde el navegador: http://localhost/fs2026/fs2026_proyecto/frontend/conexion/seed_mongo.php
- */
 require_once "conexion.php";
 require_once "../clases/Productos.php";
 
@@ -19,7 +15,6 @@ $productos = Productos::catalogoPorDefecto();
 
 try {
     $bulk = new MongoDB\Driver\BulkWrite();
-    // Limpiar colección previa
     $bulk->delete([]);
     foreach ($productos as $p) {
         $bulk->insert($p);

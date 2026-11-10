@@ -4,7 +4,7 @@ $tituloPagina = 'Estado de Pedidos';
 require_once "header.php";
 require_once "clases/Pedidos.php";
 
-$listaPedidos = Pedidos::obtenerPedidos($conexionMongo);
+$listaPedidos = Pedidos::obtenerPedidos($conexionMySQL, $conexionMongo);
 ?>
 
 <div class="row g-4">
@@ -25,18 +25,25 @@ $listaPedidos = Pedidos::obtenerPedidos($conexionMongo);
                 <div>
                     <h2 class="card-title-lg mb-1">Estado e Historial de Pedidos</h2>
                     <p class="card-subtitle-muted mb-0">
-                        Consulta el avance de tus órdenes.
+                        Consulta el avance y seguimiento de las órdenes.
                     </p>
                 </div>
-                <a href="index.php" class="btn btn-pill-outline btn-sm">
-                    <i class="bi bi-cart-plus me-1"></i> Nuevo Pedido
-                </a>
+                <div class="d-flex gap-2">
+                    <?php if ($esEmpleado): ?>
+                        <a href="admin.php#pedidos" class="btn btn-pill-primary btn-sm">
+                            <i class="bi bi-sliders me-1"></i> Gestionar Estados en Panel Empleado
+                        </a>
+                    <?php endif; ?>
+                    <a href="index.php" class="btn btn-pill-outline btn-sm">
+                        <i class="bi bi-cart-plus me-1"></i> Ir al Catálogo
+                    </a>
+                </div>
             </div>
 
             <?php if (empty($listaPedidos)): ?>
                 <div class="text-center py-5">
                     <i class="bi bi-truck fs-1 text-muted opacity-50 mb-3 d-block"></i>
-                    <h5 class="fw-bold text-dark">No tienes pedidos registrados todavía</h5>
+                    <h5 class="fw-bold text-dark">No hay pedidos registrados todavía</h5>
                     <p class="text-muted small">Realiza una compra en el catálogo para registrar tu primer pedido.</p>
                     <a href="index.php" class="btn btn-pill-primary mt-2 px-4">
                         <i class="bi bi-grid me-1"></i> Ir al Catálogo
@@ -50,14 +57,26 @@ $listaPedidos = Pedidos::obtenerPedidos($conexionMongo);
                                 <div class="d-flex justify-content-between align-items-start border-bottom pb-2 mb-3">
                                     <div>
                                         <span class="badge bg-wine text-white rounded-pill px-3 py-1 fw-bold fs-6">
-                                            <?= escapar($pedido['codigo']) ?>
+                                             <?= escapar($pedido['codigo']) ?>
                                         </span>
                                         <span class="text-muted small d-block mt-1">
                                             <i class="bi bi-clock me-1"></i> <?= escapar($pedido['fecha']) ?>
                                         </span>
                                     </div>
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-semibold">
-                                        <i class="bi bi-check-circle me-1"></i> <?= escapar($pedido['estado'] ?? 'En Preparación') ?>
+                                    <?php
+                                        $est = $pedido['estado'] ?? 'En Preparación';
+                                        if ($est === 'Entregado') {
+                                            $badgeColor = 'bg-success-subtle text-success border border-success-subtle';
+                                        } elseif ($est === 'En Tránsito') {
+                                            $badgeColor = 'bg-primary-subtle text-primary border border-primary-subtle';
+                                        } elseif ($est === 'Cancelado') {
+                                            $badgeColor = 'bg-danger-subtle text-danger border border-danger-subtle';
+                                        } else {
+                                            $badgeColor = 'bg-warning-subtle text-warning border border-warning-subtle';
+                                        }
+                                    ?>
+                                    <span class="badge <?= $badgeColor ?> px-3 py-1 rounded-pill fw-semibold">
+                                        <i class="bi bi-check-circle me-1"></i> <?= escapar($est) ?>
                                     </span>
                                 </div>
 
@@ -84,7 +103,6 @@ $listaPedidos = Pedidos::obtenerPedidos($conexionMongo);
                                     </div>
                                 </div>
 
-                                <!-- Productos del pedido -->
                                 <div class="bg-light p-2 rounded-3 mb-3 border small">
                                     <strong class="d-block mb-1 text-wine">Artículos del Pedido:</strong>
                                     <ul class="list-unstyled mb-0">

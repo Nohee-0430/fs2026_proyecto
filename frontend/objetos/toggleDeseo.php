@@ -1,7 +1,4 @@
 <?php
-/**
- * Objeto procesador: Alternar producto en lista de deseos
- */
 require_once "../clases/Deseos.php";
 
 $id = isset($_POST['id']) ? (int)$_POST['id'] : (isset($_GET['id']) ? (int)$_GET['id'] : 0);
